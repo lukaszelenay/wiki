@@ -17,7 +17,12 @@ struct Query: Codable {
 
 struct Page: Codable {
     let pageid: Int?
-    let title, snippet: String?
+    let title: String?
+    //plati pre dopyt na api s parametrami prop=extracts&exintro&explaintext
+//    let extract: String?
+    
+    //pri dopyte na prop=info plati:
+    let snippet: String?
     let fullurl: String?
 }
 
