@@ -29,8 +29,14 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         //skryjem klavesnicu, metoda sa vola nad zakladnym view, tu je jedno aky element drzi klavesnicu otvorenu
         self.view.endEditing(true)
         if let text = searchTF.text {
-            searchedText = text
+            if searchedText == text {
             searchData(search: searchedText, gsroffset: gsroffset)
+            } else {
+                searchedText = text
+                gsroffset = 0
+                pages.removeAll()
+                searchData(search: searchedText, gsroffset: gsroffset)
+            }
         }
         setTableView()
     }
