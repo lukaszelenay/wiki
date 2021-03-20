@@ -10,6 +10,8 @@ import UIKit
 class SearchViewController: UIViewController, UITextFieldDelegate {
     
     private let webDataProvider = WebDataProvider()
+    private var gsroffset = 0
+    private var searchedText = ""
     
     @IBAction func changeValueSearchTF(_ sender: UITextField) {
         if searchTF.text != "" {
@@ -26,16 +28,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBAction func showSearchBtnAction(_ sender: Any) {
         //skryjem klavesnicu, metoda sa vola nad zakladnym view, tu je jedno aky element drzi klavesnicu otvorenu
         self.view.endEditing(true)
-        
         if let text = searchTF.text {
-            webDataProvider.fetchData(searchedText: text, completionHandler: { fetchedPages in
-                self.pages = fetchedPages
-                
-            })
+            searchedText = text
+            searchData(search: searchedText, gsroffset: gsroffset)
         }
         setTableView()
-        
-        
+    }
+    
+    func searchData(search text: String, gsroffset: Int ){
+        webDataProvider.fetchData(searchedText: text, gsroffset: gsroffset, completionHandler: { fetchedPages in
+            self.pages += fetchedPages
+        })
     }
     
     override func viewDidLoad() {
@@ -43,8 +46,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         searchBtn.isEnabled = false
         searchTF.delegate = self
-        
-        
         
         //Pri cisteni odmazat nasledujucu funkciu aj s jej kodom
         //parseJSON()
@@ -59,6 +60,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     private func parseJSON() {
         //nacitam ulozeny subor
         guard let path = Bundle.main.path(forResource: "data", ofType: "json") else {
@@ -106,15 +108,25 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
 
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    //
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let index: Int = indexPath.row
+            if (gsroffset - index) < 2 {
+                searchData(search: searchedText, gsroffset: gsroffset)
+            }
+    }
+    
     //MARK: TODO: Doriesit
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        gsroffset = pages.count
         return pages.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
         if let title = self.pages[indexPath.row].title, let text = self.pages[indexPath.row].snippet {
-//            print(text)
+            //            print(text)
             cell.textLabel?.text = title
         }
         return cell

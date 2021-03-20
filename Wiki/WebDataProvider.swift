@@ -11,7 +11,7 @@ import Foundation
 final class WebDataProvider {
     
     static let shared = WebDataProvider()
-    public var pages = [Page]()
+//    public var pages = [Page]()
 
 }
 
@@ -43,7 +43,7 @@ extension WebDataProvider {
 //        task.resume()
 //    }
     
-    func fetchData(searchedText: String, completionHandler: @escaping([Page]) -> Void) {
+    func fetchData(searchedText: String, gsroffset: Int, completionHandler: @escaping([Page]) -> Void) {
         var fetchedPages = [Page]()
         //MARK: TODO - tento format zapisu sa mi viac paci(It's longer code, but easier to read.)
 //        var components = URLComponents()
@@ -64,13 +64,10 @@ extension WebDataProvider {
 //        print(components.url ?? "Bad URL.")
         
         //MARK: TODO - dorobit strankovanie cez premennu gsroffset=0 a navysovat o 10
-        let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&continue=gsroffset%7C%7C&generator=search&inprop=url&gsrsearch=\(searchedText)&gsroffset=0&gsrprop=snippet"
+        let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&continue=gsroffset%7C%7C&generator=search&inprop=url&gsrsearch=\(searchedText)&gsroffset=\(gsroffset)&gsrprop=snippet"
         
         // prop=extracts
         //let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro&explaintext&continue=gsroffset%7C%7C&generator=search&gsrsearch=\(searchedText)&gsroffset=0"
-        
-        
-        
         
         guard let url = URL(string: urlString) else {
                print("Bad URL: \(urlString)")
@@ -85,7 +82,7 @@ extension WebDataProvider {
                 if let items = try? decoder.decode(Result.self, from: jsonData) {
                     
                     fetchedPages = Array(items.query.pages.values)
-                    print("Data was parsed.")
+                    //print("Data was parsed.")
                     completionHandler(fetchedPages)
                     
                 }
