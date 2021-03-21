@@ -20,6 +20,10 @@
 		42A7893D26051CDD00590519 /* xmlData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 42A7893C26051CDD00590519 /* xmlData.xml */; };
 		42A78940260533D800590519 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7893F260533D800590519 /* Result.swift */; };
 		42A7894A2606395600590519 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A789492606395600590519 /* WebViewController.swift */; };
+		42A7894F260746BD00590519 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7894D260746BD00590519 /* TableViewCell.swift */; };
+		42A78950260746BD00590519 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A7894E260746BD00590519 /* TableViewCell.xib */; };
+		42A7895426075D7700590519 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7895326075D7700590519 /* String+.swift */; };
+		42A7895726075DA300590519 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7895626075DA300590519 /* Data+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		42A7893C26051CDD00590519 /* xmlData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = xmlData.xml; sourceTree = SOURCE_ROOT; };
 		42A7893F260533D800590519 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		42A789492606395600590519 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		42A7894D260746BD00590519 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		42A7894E260746BD00590519 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		42A7895326075D7700590519 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		42A7895626075DA300590519 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,12 +78,15 @@
 		420A883426039C4000000E89 /* Wiki */ = {
 			isa = PBXGroup;
 			children = (
+				42A7895226075D5500590519 /* Extensions */,
 				42A7893F260533D800590519 /* Result.swift */,
 				42A7893C26051CDD00590519 /* xmlData.xml */,
 				42A789392604FB6F00590519 /* data.json */,
 				420A883526039C4000000E89 /* AppDelegate.swift */,
 				420A883726039C4000000E89 /* SceneDelegate.swift */,
 				420A883926039C4000000E89 /* SearchViewController.swift */,
+				42A7894D260746BD00590519 /* TableViewCell.swift */,
+				42A7894E260746BD00590519 /* TableViewCell.xib */,
 				420A885B2603B6DD00000E89 /* WebDataProvider.swift */,
 				420A883B26039C4000000E89 /* Main.storyboard */,
 				42A789492606395600590519 /* WebViewController.swift */,
@@ -86,6 +97,15 @@
 				420A883E26039C4000000E89 /* Wiki.xcdatamodeld */,
 			);
 			path = Wiki;
+			sourceTree = "<group>";
+		};
+		42A7895226075D5500590519 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				42A7895326075D7700590519 /* String+.swift */,
+				42A7895626075DA300590519 /* Data+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				420A884526039C4300000E89 /* LaunchScreen.storyboard in Resources */,
+				42A78950260746BD00590519 /* TableViewCell.xib in Resources */,
 				420A884226039C4300000E89 /* Assets.xcassets in Resources */,
 				420A883D26039C4000000E89 /* Main.storyboard in Resources */,
 				42A7893D26051CDD00590519 /* xmlData.xml in Resources */,
@@ -162,11 +183,14 @@
 			files = (
 				420A883A26039C4000000E89 /* SearchViewController.swift in Sources */,
 				420A884026039C4000000E89 /* Wiki.xcdatamodeld in Sources */,
+				42A7895426075D7700590519 /* String+.swift in Sources */,
 				420A883626039C4000000E89 /* AppDelegate.swift in Sources */,
+				42A7894F260746BD00590519 /* TableViewCell.swift in Sources */,
 				420A88582603ADF800000E89 /* SavedViewController.swift in Sources */,
 				42A78940260533D800590519 /* Result.swift in Sources */,
 				420A883826039C4000000E89 /* SceneDelegate.swift in Sources */,
 				420A885C2603B6DD00000E89 /* WebDataProvider.swift in Sources */,
+				42A7895726075DA300590519 /* Data+.swift in Sources */,
 				42A7894A2606395600590519 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,12 +25,13 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    
     @IBAction func showSearchBtnAction(_ sender: Any) {
         //skryjem klavesnicu, metoda sa vola nad zakladnym view, tu je jedno aky element drzi klavesnicu otvorenu
         self.view.endEditing(true)
         if let text = searchTF.text {
             if searchedText == text {
-            searchData(search: searchedText, gsroffset: gsroffset)
+                searchData(search: searchedText, gsroffset: gsroffset)
             } else {
                 searchedText = text
                 gsroffset = 0
@@ -50,6 +51,11 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        //register prototype cell
+        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "TableViewCell")
+        
         searchBtn.isEnabled = false
         searchTF.delegate = self
         
@@ -110,6 +116,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             destinationVC.selectedUrl = page as? String
         }
     }
+    
+    
 }
 
 
@@ -118,9 +126,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     //
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let index: Int = indexPath.row
-            if (gsroffset - index) < 2 {
-                searchData(search: searchedText, gsroffset: gsroffset)
-            }
+        if (gsroffset - index) < 2 {
+            searchData(search: searchedText, gsroffset: gsroffset)
+        }
     }
     
     //MARK: TODO: Doriesit
@@ -130,10 +138,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
-        if let title = self.pages[indexPath.row].title, let text = self.pages[indexPath.row].snippet {
-            //            print(text)
-            cell.textLabel?.text = title
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+
+        if let title = self.pages[indexPath.row].title, let snippetText = self.pages[indexPath.row].snippet {
+
+            cell.titleLbl.text = title
+            cell.snippetText.text = snippetText.html2String
         }
         return cell
     }
