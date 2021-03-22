@@ -30,8 +30,11 @@
                             <constraint firstAttribute="width" constant="50" id="AXG-ge-fyj"/>
                         </constraints>
                         <state key="normal" title="Save"/>
+                        <connections>
+                            <action selector="saveBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NKI-V5-dwo"/>
+                        </connections>
                     </button>
-                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8Y-I4-Bf0">
+                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" delaysContentTouches="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8Y-I4-Bf0">
                         <rect key="frame" x="10" y="44" width="422" height="168"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>

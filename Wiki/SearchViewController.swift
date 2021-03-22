@@ -30,10 +30,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         //skryjem klavesnicu, metoda sa vola nad zakladnym view, tu je jedno aky element drzi klavesnicu otvorenu
         self.view.endEditing(true)
         if let text = searchTF.text {
-            if searchedText == text {
+            var replacedText = text
+            if replacedText.contains(" ") {
+                replacedText = text.replacingOccurrences(of: " ", with: "_")
+            } else {
+                
+            }
+            
+            if searchedText == replacedText {
                 searchData(search: searchedText, gsroffset: gsroffset)
             } else {
-                searchedText = text
+                searchedText = replacedText
                 gsroffset = 0
                 pages.removeAll()
                 searchData(search: searchedText, gsroffset: gsroffset)
@@ -51,18 +58,16 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        //pri prvom spusteni nacitam vsetky id ulozenych clankov z db
+        SavedPagesController.sharedInstance.getAllID()
         //register prototype cell
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TableViewCell")
         
         searchBtn.isEnabled = false
         searchTF.delegate = self
-        
-        //Pri cisteni odmazat nasledujucu funkciu aj s jej kodom
-        //parseJSON()
+
     }
-    
     
     private var pages = [Page]()
     {
@@ -106,7 +111,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setTableView() {
-        //MARK: TODO: Doriesit po spusteni sa tam nechcem hned dostat, volat samostatne neskor
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -123,7 +127,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
-    //
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let index: Int = indexPath.row
         if (gsroffset - index) < 2 {
@@ -131,21 +134,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //MARK: TODO: Doriesit
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         gsroffset = pages.count
         return pages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-
-        if let title = self.pages[indexPath.row].title, let snippetText = self.pages[indexPath.row].snippet {
-
-            cell.titleLbl.text = title
-            cell.snippetText.text = snippetText.html2String
-        }
+            cell.page = self.pages[indexPath.row]
         return cell
     }
     

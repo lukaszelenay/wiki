@@ -24,6 +24,7 @@
 		42A78950260746BD00590519 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A7894E260746BD00590519 /* TableViewCell.xib */; };
 		42A7895426075D7700590519 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7895326075D7700590519 /* String+.swift */; };
 		42A7895726075DA300590519 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7895626075DA300590519 /* Data+.swift */; };
+		42A7895A26079DFB00590519 /* SavedPagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7895926079DFB00590519 /* SavedPagesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		42A7894E260746BD00590519 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		42A7895326075D7700590519 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		42A7895626075DA300590519 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		42A7895926079DFB00590519 /* SavedPagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPagesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				420A883726039C4000000E89 /* SceneDelegate.swift */,
 				420A883926039C4000000E89 /* SearchViewController.swift */,
 				42A7894D260746BD00590519 /* TableViewCell.swift */,
+				42A7895926079DFB00590519 /* SavedPagesController.swift */,
 				42A7894E260746BD00590519 /* TableViewCell.xib */,
 				420A885B2603B6DD00000E89 /* WebDataProvider.swift */,
 				420A883B26039C4000000E89 /* Main.storyboard */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A7895A26079DFB00590519 /* SavedPagesController.swift in Sources */,
 				420A883A26039C4000000E89 /* SearchViewController.swift in Sources */,
 				420A884026039C4000000E89 /* Wiki.xcdatamodeld in Sources */,
 				42A7895426075D7700590519 /* String+.swift in Sources */,
