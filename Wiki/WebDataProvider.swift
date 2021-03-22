@@ -63,7 +63,7 @@ extension WebDataProvider {
 //        ]
 //        print(components.url ?? "Bad URL.")
         
-        //MARK: TODO - dorobit strankovanie cez premennu gsroffset=0 a navysovat o 10
+        
         let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&continue=gsroffset%7C%7C&generator=search&inprop=url&gsrsearch=\(searchedText)&gsroffset=\(gsroffset)&gsrprop=snippet"
         
         // prop=extracts

@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-1549" y="-248"/>
         </scene>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="Wiki" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,7 +80,7 @@
                             <constraint firstItem="PRC-GR-XPl" firstAttribute="top" secondItem="hMQ-Gv-2zC" secondAttribute="bottom" id="njE-WN-h3V"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="RNw-cf-TYR"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="RNw-cf-TYR"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ep6-FJ-BGH">
                         <nil key="title"/>
@@ -113,7 +113,7 @@
             </objects>
             <point key="canvasLocation" x="374" y="-248"/>
         </scene>
-        <!--Saved-->
+        <!--Saved View Controller-->
         <scene sceneID="ovg-X0-wRF">
             <objects>
                 <viewController id="aHc-MD-ayn" customClass="SavedViewController" customModule="Wiki" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                             <constraint firstItem="XmE-R1-rwS" firstAttribute="top" secondItem="WMb-ud-YPm" secondAttribute="top" id="Uqj-QP-p3G"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Saved" id="kDM-cM-s1d"/>
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="kDM-cM-s1d"/>
                     <connections>
                         <outlet property="tableView" destination="XmE-R1-rwS" id="pAz-0j-ZGq"/>
                     </connections>

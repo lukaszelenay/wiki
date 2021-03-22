@@ -18,15 +18,11 @@ class SavedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControll.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-        tableView.tableFooterView = UIView()
-        tableView.addSubview(refreshControll)
         //register prototype cell
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "TableViewCell")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name("refreshUserList"), object: nil)
-
-//        print(pages[0].title)
-//        print(pages.count)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -36,10 +32,14 @@ class SavedViewController: UIViewController {
     @objc func refresh() {
         pages = SavedPagesController.sharedInstance.getPages()
         tableView.reloadData()
-        refreshControll.endRefreshing()
     }
-
-
+    
+    //MARK: TO DO dorobit otvorenie ulozenej stranky
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let destinationVC = segue.destination as? WebViewController, let page = sender {
+//            destinationVC.selectedUrl = page as? String
+//        }
+//    }
 }
 
 
@@ -51,13 +51,14 @@ extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        //cell.page = self.pages[indexPath.row]
-        
         cell.saveBtn.setTitle("Delete", for: .normal)
         cell.titleLbl.text = pages[indexPath.row].title
         cell.snippetText.text = pages[indexPath.row].snippet?.html2String
         return cell
     }
     
-    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        performSegue(withIdentifier: "showSelectedWebResult", sender: pages[indexPath.row].fullurl)
+//    }
 }

@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 class TableViewCell: UITableViewCell {
-    private var savedPages = SavedPagesController().savedPagesID
+//    private var savedPages = SavedPagesController().savedPagesID
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var snippetText: UITextView!
     @IBOutlet weak var saveBtn: UIButton!
@@ -55,9 +55,6 @@ class TableViewCell: UITableViewCell {
                 }
             }
         }
-        
-        
-        
     }
     
     
@@ -68,7 +65,6 @@ class TableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     

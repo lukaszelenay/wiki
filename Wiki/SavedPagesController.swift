@@ -26,7 +26,15 @@ class SavedPagesController {
             newPage.snippet = pageSnippet
             newPage.url = url
             savedPagesID.append(pageId)
-            
+            do {
+                if url != "" {
+                    let URL = NSURL(string: url)
+                    let htmlSource = try String(contentsOf: URL! as URL, encoding: String.Encoding.utf8)
+                    newPage.html = htmlSource
+                }
+            } catch {
+                return completion(false)
+            }
         }
         else {
             //neulozena, nezmenit titulok btn
@@ -53,8 +61,6 @@ class SavedPagesController {
             if results.count > 0 {
                 for object in results {
                     managedContext.delete(object as NSManagedObject)
-//                    savedPagesID.remove(at: (savedPagesID.firstIndex(of: pageId))!)
-                    
                 }
             }
             NotificationCenter.default.post(name: NSNotification.Name("refreshUserList"), object: nil)

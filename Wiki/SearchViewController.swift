@@ -120,8 +120,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             destinationVC.selectedUrl = page as? String
         }
     }
-    
-    
 }
 
 

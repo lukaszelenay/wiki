@@ -13,7 +13,6 @@ class WebViewController: UIViewController {
     var selectedUrl: String?
     
     
-    
     override func loadView() {
         webView = WKWebView()
         webView.navigationDelegate = self
@@ -22,10 +21,6 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
-//        toolbarItems = [spacer, refresh]
-//        navigationController?.isToolbarHidden = false
         guard let url = selectedUrl else {
             return
         }
@@ -34,22 +29,19 @@ class WebViewController: UIViewController {
     
     
     func openPage(urlString: String){
-
+        
         guard let url = URL(string: urlString) else {
             return
         }
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
-        
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
     
-
 }
-
 
 extension WebViewController: WKNavigationDelegate {
     
