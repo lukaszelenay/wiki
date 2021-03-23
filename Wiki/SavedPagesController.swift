@@ -17,7 +17,6 @@ class SavedPagesController {
     
     let managedContext = AppDelegate.delegate.persistentContainer.viewContext
     
-    
     func savePage(pageId: String, pageTitle: String, pageSnippet: String, url: String, completion: @escaping (Bool) -> Void ) {
         if let entity = NSEntityDescription.entity(forEntityName: "WikiPage", in: managedContext),
            let newPage = NSManagedObject(entity: entity, insertInto: managedContext) as? WikiPage {
@@ -27,11 +26,12 @@ class SavedPagesController {
             newPage.url = url
             savedPagesID.append(pageId)
             do {
-                if url != "" {
-                    let URL = NSURL(string: url)
-                    let htmlSource = try String(contentsOf: URL! as URL, encoding: String.Encoding.utf8)
-                    newPage.html = htmlSource
-                }
+//                if url != "" {
+                //MARK: TODO: sposob ako ukladat data: https://developer.apple.com/documentation/foundation/urlsessiondownloadtask
+//                    let URL = NSURL(string: url)
+//                    let htmlSource = try String(contentsOf: URL! as URL, encoding: String.Encoding.utf8)
+//                    newPage.html = htmlSource
+//                }
             } catch {
                 return completion(false)
             }
@@ -80,9 +80,11 @@ class SavedPagesController {
     
     func getAllID(){
         let pages = getPages()
+        //zmazem vsetky predtym nacitane id
         if savedPagesID.count != 0 {
             savedPagesID.removeAll()
         }
+        //nacitam aktualny zoznam
         if pages.count > 0 {
             for i in 0...(pages.count - 1) {
                 if let IDpage = pages[i].pageID {
@@ -91,6 +93,21 @@ class SavedPagesController {
                 }
             }
         }
+        
+    }
+    
+    func getPageData(id: String) -> String{
+        
+        let fetchRequest: NSFetchRequest<WikiPage> = WikiPage.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "pageID == %@", id)
+        let fetchedPage = try? managedContext.fetch(fetchRequest) as [WikiPage]
+        if fetchedPage!.count > 0 {
+            if let htmlString = fetchedPage![0].html {
+                return htmlString
+            }
+        }
+        
+        return "NO_DATA"
         
     }
     

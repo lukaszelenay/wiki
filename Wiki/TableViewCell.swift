@@ -21,14 +21,13 @@ class TableViewCell: UITableViewCell {
                 titleLbl.text = pageTitle
                 snippetText.text = pageSnippet.html2String
                 //pri opatovnom nacitani vysledkov sa bude zistovat ci su uz ulozene do db
-//                let idPage = pageID as! String
                 saveBtn.setTitle(pages.contains("\(pageID)") ? "Delete" : "Save", for: .normal)
             }
         }
     }
     
     @IBAction func saveBtn(_ sender: Any) {
-        
+        //MARK: TO DO - dorobit akciu na stlacenie btn z SavedViewController, tato sa vykona pri stlaceni v SearchViewController
         if self.saveBtn.titleLabel?.text == "Save" {
             if let selectedPage = page {
                 if let pageId = selectedPage.pageid, let title = selectedPage.title, let snippet = selectedPage.snippet, let url = selectedPage.fullurl {

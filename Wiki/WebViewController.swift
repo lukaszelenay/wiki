@@ -11,6 +11,7 @@ import WebKit
 class WebViewController: UIViewController {
     var webView: WKWebView!
     var selectedUrl: String?
+    var selectedPageId: String?
     
     
     override func loadView() {
@@ -21,12 +22,28 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let url = selectedUrl else {
+        
+        if selectedUrl != nil {
+            openPage(urlString: selectedUrl!)
+        } else if selectedPageId != nil {
+            openPage(id: selectedPageId!)
+        } else {
             return
         }
-        openPage(urlString: url)
+        
     }
     
+    func openPage(id: String) {
+        let htmlString = SavedPagesController.sharedInstance.getPageData(id: id)
+        print(htmlString)
+        if htmlString == "NO_DATA" {
+            return
+        }
+
+        let webView = WKWebView()
+        webView.loadHTMLString(htmlString, baseURL: nil)
+        
+    }
     
     func openPage(urlString: String){
         

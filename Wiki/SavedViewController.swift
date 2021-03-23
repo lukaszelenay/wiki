@@ -12,7 +12,6 @@ class SavedViewController: UIViewController {
     let refreshControll = UIRefreshControl()
     var pages: [WikiPage] = []
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -34,12 +33,12 @@ class SavedViewController: UIViewController {
         tableView.reloadData()
     }
     
-    //MARK: TO DO dorobit otvorenie ulozenej stranky
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let destinationVC = segue.destination as? WebViewController, let page = sender {
-//            destinationVC.selectedUrl = page as? String
-//        }
-//    }
+    //MARK: WebViewController dostane ID stranky, ktora sa nacita z DB
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? WebViewController, let pageID = sender {
+            destinationVC.selectedPageId = pageID as? String
+        }
+    }
 }
 
 
@@ -57,8 +56,8 @@ extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        performSegue(withIdentifier: "showSelectedWebResult", sender: pages[indexPath.row].fullurl)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showSelectedSavedResult", sender: pages[indexPath.row].pageID)
+    }
 }

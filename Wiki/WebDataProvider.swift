@@ -11,37 +11,10 @@ import Foundation
 final class WebDataProvider {
     
     static let shared = WebDataProvider()
-//    public var pages = [Page]()
 
 }
 
 extension WebDataProvider {
-    
-//    func fetchJsonData(searchedText: String, completionHandler: @escaping([Result]) -> Void) {
-//        var fetchedPages = [Result]()
-//        
-//        let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&continue=gsroffset%7C%7C&generator=search&inprop=url&gsrsearch=\(searchedText)&gsroffset=0&gsrprop=snippet"
-//        
-//        guard let urlToServer = URL.init(string: urlString) else {
-//            print("Bad request")
-//            return
-//        }
-//        
-//        let task = URLSession.shared.dataTask(with: urlToServer, completionHandler: {(data, response, error) in
-//            if error != nil || data == nil {
-//                print("An error occured while fetching data from API")
-//            }
-//            else {
-//                if let responseText = String.init(data: data!, encoding: .ascii) {
-//                    let jsonData = responseText.data(using: .utf8)!
-//                    fetchedPages = try! JSONDecoder().decode([Result].self, from: jsonData)
-//                    completionHandler(fetchedPages)
-//                }
-//            }
-//        })
-//        
-//        task.resume()
-//    }
     
     func fetchData(searchedText: String, gsroffset: Int, completionHandler: @escaping([Page]) -> Void) {
         var fetchedPages = [Page]()
@@ -80,11 +53,8 @@ extension WebDataProvider {
                 let decoder = JSONDecoder()
                 
                 if let items = try? decoder.decode(Result.self, from: jsonData) {
-                    
                     fetchedPages = Array(items.query.pages.values)
-                    //print("Data was parsed.")
                     completionHandler(fetchedPages)
-                    
                 }
                 else {
                     print("Failed to parse data.")
