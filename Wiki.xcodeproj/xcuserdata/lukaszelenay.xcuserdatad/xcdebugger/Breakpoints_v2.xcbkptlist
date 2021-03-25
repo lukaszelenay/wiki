@@ -3,4 +3,86 @@
    uuid = "8560E5C1-8F72-4E29-917B-C940030A0D00"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64C513A0-4527-4372-98BA-B9B2452DF4A8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wiki/SavedPagesController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "getAllID()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "64C513A0-4527-4372-98BA-B9B2452DF4A8 - 78fcdc7fd323a8ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Wiki.SavedPagesController.getAllID() -&gt; ()"
+                  moduleName = "Wiki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lukaszelenay/Desktop/Wiki/Wiki/SavedPagesController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "323">
+               </Location>
+               <Location
+                  uuid = "64C513A0-4527-4372-98BA-B9B2452DF4A8 - ce90dcdcea92175d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Wiki.WikiPage) -&gt; Swift.Optional&lt;Swift.String&gt; in Wiki.SavedPagesController.getAllID() -&gt; ()"
+                  moduleName = "Wiki"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lukaszelenay/Desktop/Wiki/Wiki/SavedPagesController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5535D191-3BB9-40BC-BD03-08BF042148CE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wiki/SearchViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "changeValueSearchTF(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "659B3335-9554-49D7-8CA4-7F1C57DC8362"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wiki/TableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "page"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

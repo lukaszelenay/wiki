@@ -14,11 +14,8 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     private var searchedText = ""
     
     @IBAction func changeValueSearchTF(_ sender: UITextField) {
-        if searchTF.text != "" {
-            searchBtn.isEnabled = true
-        } else {
-            searchBtn.isEnabled = false
-        }
+        searchBtn.isEnabled = searchTF.text?.isEmpty == false
+//        searchTF.text != "" ? (searchBtn.isEnabled = true) : (searchBtn.isEnabled = false)
     }
     
     @IBOutlet weak var searchTF: UITextField!
@@ -30,16 +27,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         
         if let text = searchTF.text {
+            //MARK: update StringProtocol-u riesi tento problem globalne
             //skontrolujem vyskyt medzery a nahradim ju znakom "_"
-            var replacedText = text
-            if replacedText.contains(" ") {
-                replacedText = text.replacingOccurrences(of: " ", with: "_")
-            }
+//            var replacedText = text
+//            if replacedText.contains(" ") {
+//                replacedText = text.replacingOccurrences(of: " ", with: "_")
+//            }
             
-            if searchedText == replacedText {
-                searchData(search: searchedText, gsroffset: gsroffset)
+            if searchedText == text {
+                searchData(search: text, gsroffset: gsroffset)
             } else {
-                searchedText = replacedText
+                searchedText = text
                 gsroffset = 0
                 pages.removeAll()
                 searchData(search: searchedText, gsroffset: gsroffset)

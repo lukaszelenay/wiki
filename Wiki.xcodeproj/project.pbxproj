@@ -94,10 +94,10 @@
 				42A7894E260746BD00590519 /* TableViewCell.xib */,
 				42A7895926079DFB00590519 /* SavedPagesController.swift */,
 				420A883B26039C4000000E89 /* Main.storyboard */,
+				420A883E26039C4000000E89 /* Wiki.xcdatamodeld */,
 				420A884126039C4300000E89 /* Assets.xcassets */,
 				420A884326039C4300000E89 /* LaunchScreen.storyboard */,
 				420A884626039C4300000E89 /* Info.plist */,
-				420A883E26039C4000000E89 /* Wiki.xcdatamodeld */,
 			);
 			path = Wiki;
 			sourceTree = "<group>";

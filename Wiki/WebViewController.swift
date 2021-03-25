@@ -15,6 +15,7 @@ class WebViewController: UIViewController {
     
     
     override func loadView() {
+        //toto nikdy nesmies volat
         webView = WKWebView()
         webView.navigationDelegate = self
         view = webView
@@ -25,14 +26,14 @@ class WebViewController: UIViewController {
         
         if selectedUrl != nil {
             openPage(urlString: selectedUrl!)
-        } else if selectedPageId != nil {
-            openPage(id: selectedPageId!)
         } else {
             return
         }
         
     }
     
+    
+    //tato funkcia bude nahradena
     func openPage(id: String) {
         let htmlString = SavedPagesController.sharedInstance.getPageData(id: id)
         print(htmlString)

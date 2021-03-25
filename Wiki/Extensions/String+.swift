@@ -14,4 +14,8 @@ extension StringProtocol {
     var html2String: String {
         html2AttributedString?.string ?? ""
     }
+    
+    var urlEncoded: String {
+            addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        }
 }
