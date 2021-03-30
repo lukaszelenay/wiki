@@ -25,16 +25,16 @@ class SavedPagesController {
             newPage.snippet = pageSnippet
             newPage.url = url
             savedPagesID.append(pageId)
-//            do {
-////                if url != "" {
-//                //MARK: TODO: sposob ako ukladat data: https://developer.apple.com/documentation/foundation/urlsessiondownloadtask
-////                    let URL = NSURL(string: url)
-////                    let htmlSource = try String(contentsOf: URL! as URL, encoding: String.Encoding.utf8)
-////                    newPage.html = htmlSource
-////                }
-//            } catch {
-//                return completion(false)
-//            }
+            //            do {
+            ////                if url != "" {
+            //                //MARK: TODO: sposob ako ukladat data: https://developer.apple.com/documentation/foundation/urlsessiondownloadtask
+            ////                    let URL = NSURL(string: url)
+            ////                    let htmlSource = try String(contentsOf: URL! as URL, encoding: String.Encoding.utf8)
+            ////                    newPage.html = htmlSource
+            ////                }
+            //            } catch {
+            //                return completion(false)
+            //            }
         }
         else {
             //neulozena, nezmenit titulok btn
@@ -84,18 +84,7 @@ class SavedPagesController {
         if savedPagesID.count != 0 {
             savedPagesID.removeAll()
         }
-        //nacitam aktualny zoznam
-        if pages.count > 0 {
-            savedPagesID.append(contentsOf: pages.compactMap{String($0.pageID!)})
-            
-//            for i in 0...(pages.count - 1) {
-//                if let IDpage = pages[i].pageID {
-//                    let id = IDpage as String
-//                    savedPagesID.append(id)
-//                }
-//            }
-        }
-        
+        savedPagesID.append(contentsOf: pages.compactMap{String($0.pageID!)})
     }
     
     func getPageData(id: String) -> String {

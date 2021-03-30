@@ -9,58 +9,35 @@ import UIKit
 import WebKit
 
 class WebViewController: UIViewController {
-    var webView: WKWebView!
     var selectedUrl: String?
     var selectedPageId: String?
     
-    
-    override func loadView() {
-        //toto nikdy nesmies volat
-        webView = WKWebView()
-        webView.navigationDelegate = self
-        view = webView
-    }
+    @IBOutlet weak var mWKWebView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if selectedUrl != nil {
             openPage(urlString: selectedUrl!)
-        } else {
-            return
+        } else if selectedPageId != nil {
+            openOfflinePage(id: selectedPageId!)
         }
         
     }
-    
-    
-    //tato funkcia bude nahradena
-    func openPage(id: String) {
+
+    func openOfflinePage(id: String) {
         let htmlString = SavedPagesController.sharedInstance.getPageData(id: id)
-        print(htmlString)
+//        print(htmlString)
         if htmlString == "NO_DATA" {
             return
         }
-
-        let webView = WKWebView()
-        webView.loadHTMLString(htmlString, baseURL: nil)
-        
+        //MARK: zlozitejsie formatovane stranky sa takto nedaju nacitat https://developer.apple.com/documentation/foundation/urlsessiondownloadtask
+        mWKWebView.loadHTMLString(htmlString, baseURL: nil)
     }
     
     func openPage(urlString: String){
-        
         guard let url = URL(string: urlString) else {
             return
         }
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
+        mWKWebView.load(URLRequest(url: url))
     }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        title = webView.title
-    }
-    
-}
-
-extension WebViewController: WKNavigationDelegate {
-    
 }
