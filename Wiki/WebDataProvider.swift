@@ -36,9 +36,9 @@ extension WebDataProvider {
 //        ]
 //        print(components.url ?? "Bad URL.")
         
-        
+        print(searchedText)
         let urlString = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=info&continue=gsroffset%7C%7C&generator=search&inprop=url&gsrsearch=\(searchedText)&gsroffset=\(gsroffset)&gsrprop=snippet"
-        
+                
         guard let url = URL(string: urlString) else {
                print("Bad URL: \(urlString)")
                return

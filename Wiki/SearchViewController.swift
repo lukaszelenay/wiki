@@ -26,14 +26,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         //skryjem klavesnicu, metoda sa vola nad zakladnym view, tu je jedno aky element drzi klavesnicu otvorenu
         self.view.endEditing(true)
         
-        if let text = searchTF.text {
-            //MARK: update StringProtocol-u riesi tento problem globalne
-            //skontrolujem vyskyt medzery a nahradim ju znakom "_"
-//            var replacedText = text
-//            if replacedText.contains(" ") {
-//                replacedText = text.replacingOccurrences(of: " ", with: "_")
-//            }
-            
+        if let text = searchTF.text?.urlEncoded {
             if searchedText == text {
                 searchData(search: text, gsroffset: gsroffset)
             } else {
@@ -45,7 +38,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         }
         setTableView()
     }
-    
     
     func searchData(search text: String, gsroffset: Int ){
         webDataProvider.fetchData(searchedText: text, gsroffset: gsroffset, completionHandler: { fetchedPages in

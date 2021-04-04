@@ -16,6 +16,6 @@ extension StringProtocol {
     }
     
     var urlEncoded: String {
-            addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        }
+        addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    }
 }
