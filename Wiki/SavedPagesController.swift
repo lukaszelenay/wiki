@@ -61,6 +61,7 @@ class SavedPagesController {
             if results.count > 0 {
                 for object in results {
                     managedContext.delete(object as NSManagedObject)
+                    try managedContext.save()
                 }
             }
             NotificationCenter.default.post(name: NSNotification.Name("refreshUserList"), object: nil)

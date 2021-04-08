@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 class TableViewCell: UITableViewCell {
-//    private var savedPages = SavedPagesController().savedPagesID
+    //    private var savedPages = SavedPagesController().savedPagesID
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var snippetText: UILabel!
@@ -22,6 +22,16 @@ class TableViewCell: UITableViewCell {
                 snippetText.text = pageSnippet.html2String + "..."
                 //pri opatovnom nacitani vysledkov sa bude zistovat ci su uz ulozene do db
                 saveBtn.setTitle(pages.contains("\(pageID)") ? "Delete" : "Save", for: .normal)
+            }
+        }
+    }
+    
+    var savedPages: WikiPage! {
+        didSet {
+            if let pageTitle = savedPages.title, let pageSnippet = savedPages.snippet {
+                titleLbl.text = pageTitle
+                snippetText.text = pageSnippet.html2String + "..."
+                saveBtn.setTitle("Delete", for: .normal)
             }
         }
     }
@@ -42,6 +52,7 @@ class TableViewCell: UITableViewCell {
             }
         }
         else {
+            //je ulozena
             if let selectedPage = page {
                 if let pageId = selectedPage.pageid {
                     let pageIDS = String(pageId)
@@ -51,6 +62,18 @@ class TableViewCell: UITableViewCell {
                             SavedPagesController.sharedInstance.getAllID()
                         }
                     }
+                }
+            } else {
+                if let selectedPage = savedPages {
+                    if let pageID = selectedPage.pageID {
+                        let pageIDS = String(pageID)
+                        SavedPagesController.sharedInstance.deletePage(pageId: pageIDS) { uspech in
+                            if uspech {
+                                SavedPagesController.sharedInstance.getAllID()
+                            }
+                        }
+                    }
+                    
                 }
             }
         }

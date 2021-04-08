@@ -12,6 +12,15 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
     private let webDataProvider = WebDataProvider()
     private var gsroffset = 0
     private var searchedText = ""
+    private var pages = [Page]()
+    {
+        didSet {
+            //DispatchQueue riadi vykonavanie uloh, v tomto pripade asynchronne vykonanie
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     @IBAction func changeValueSearchTF(_ sender: UITextField) {
         searchBtn.isEnabled = searchTF.text?.isEmpty == false
@@ -60,15 +69,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         tableView.isHidden = true
     }
     
-    private var pages = [Page]()
-    {
-        didSet {
-            //DispatchQueue riadi vykonavanie uloh, v tomto pripade asynchronne vykonanie
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    
     
     //MARK: funkcia na parsovanie JSON dat z lokalneho uloziska
 //    private func parseJSON() {

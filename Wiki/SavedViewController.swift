@@ -22,15 +22,26 @@ class SavedViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "TableViewCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name("refreshUserList"), object: nil)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+//        setTableView()
+//        tableView.delegate = self
+//        tableView.dataSource = self
         refresh()
+    }
+    
+    func setTableView() {
+        if pages.count == 0 {
+            tableView.isHidden = true
+        } else {
+            tableView.isHidden = false
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.reloadData()
+        }
     }
     
     @objc func refresh() {
         pages = SavedPagesController.sharedInstance.getPages()
-        tableView.reloadData()
+        setTableView()
     }
     
     //MARK: WebViewController dostane ID stranky, ktora sa nacita z DB
@@ -50,9 +61,10 @@ extension SavedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        cell.saveBtn.setTitle("Delete", for: .normal)
-        cell.titleLbl.text = pages[indexPath.row].title
-        cell.snippetText.text = pages[indexPath.row].snippet?.html2String
+//        cell.saveBtn.setTitle("Delete", for: .normal)
+//        cell.titleLbl.text = pages[indexPath.row].title
+//        cell.snippetText.text = pages[indexPath.row].snippet?.html2String
+        cell.savedPages = pages[indexPath.row]
         return cell
     }
     
